@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="">
+
+		<script src="custom-element-demo.js"></script>
+	</head>
+	<body>
+		<script>
+			let $ce = document.createElement('my-custom-element');
+			setTimeout(() => document.body.appendChild($ce), 3000);
+		</script>
+		
+		<p class="pp">A simple paragraph element.</p>
+	</body>
+</html>

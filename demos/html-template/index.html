@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<template id="list-item">
+			<li>
+				<h1>A Movie Title</h1>
+				<p>A move plot.</p>
+			</li>
+		</template>
+		<ul id="movie-list"></ul>
+		<script>
+			const items = [
+				{ title: 'Bob is Cool', plot: 'Bob is cool.' },
+				{ title: 'Bob is Cool', plot: 'Bob is cool.' },
+				{ title: 'Bob is Cool', plot: 'Bob is cool.' }
+			]
+			const $template = document.getElementById('list-item');
+			const $list = document.getElementById('movie-list');
+
+			items.forEach((movie) => {
+				const $clone = document.importNode($template.content, true);
+				$clone.querySelector('h1').innerText = movie.title;
+				$clone.querySelector('p').innerText = movie.plot;
+				$list.appendChild($clone);
+			});
+		</script>
+	</body>
+</html>

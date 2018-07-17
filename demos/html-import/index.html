@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="import" href="notice.html" id="notice">
+	</head>
+	<body>
+		<script>
+			const $link = document.getElementById('notice');
+			const content = $link.import.querySelector('.notice-frame');
+			document.body.appendChild(content.cloneNode(true));
+		</script>
+	</body>
+</html>

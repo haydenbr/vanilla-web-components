@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			p {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<p>Paragraph text in the outer application.</p>
+		<div id="simple-div"></div>
+		<p>Some more paragraph text in the outer application.</p>
+	
+		<script>
+			let $div = document.getElementById('simple-div');
+			$div.attachShadow({ mode: 'open' });
+			$div.shadowRoot.innerHTML = `
+				<style>
+						p { color: blue }
+				</style>
+				<p>Paragraph text in the shadow dom</p>
+			`;
+		</script>
+	</body>
+</html>
