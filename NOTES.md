@@ -70,3 +70,4 @@ https://www.html5rocks.com/en/tutorials/webcomponents/template/
 - jsx/tsx in web components?
 - writing with typescript?
 - perf test of framework component vs. web component
+- how would these components work in an app of components?
