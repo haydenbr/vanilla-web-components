@@ -1,0 +1,16 @@
+<template>
+	<style>p { color: red; }</style>
+	<p>My Web Component!</p>
+</template>
+
+<script>
+	const $owner = (document._currentScript || document.currentScript).ownerDocument;
+	const $template = $owner.querySelector('template');
+	class MyComponent extends HTMLElement {
+		connectedCallback() {
+			const $content = document.importNode($template.content, true);
+			this.appendChild($content);
+		}
+	}
+	window.customElements.define('my-component', MyComponent);
+</script>
