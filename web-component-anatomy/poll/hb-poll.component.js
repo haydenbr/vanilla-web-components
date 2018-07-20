@@ -38,7 +38,6 @@ const template = `
 `;
 
 class HbPoll extends HTMLElement {
-	attached = false;
 	_selected;
 	$question;
 	$answers;
@@ -49,13 +48,13 @@ class HbPoll extends HTMLElement {
 	
 	constructor() {
 		super();
+		this.root = this.attachShadow({ mode: 'open' });
 	}
 
 	connectedCallback() {
-		this.attached = true;
-		this.innerHTML = template;
-		this.$question = this.querySelector('#question');
-		this.$answers = this.querySelector('#answers');
+		this.root.innerHTML = template;
+		this.$question = this.root.querySelector('#question');
+		this.$answers = this.root.querySelector('#answers');
 
 		this.$answers.addEventListener('click', (event) => {
 			this.$answers.querySelectorAll('li').forEach(($li, index) => {
@@ -69,7 +68,7 @@ class HbPoll extends HTMLElement {
 	}
 
 	render() {
-		if (this.attached) {
+		if (this.isConnected) {
 			this.$answers.innerHTML = '';
 			this.$question.innerHTML = '';
 			this.$question.innerHTML = this.data.question;
