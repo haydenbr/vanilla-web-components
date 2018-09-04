@@ -65,10 +65,24 @@ https://www.html5rocks.com/en/tutorials/webcomponents/template/
 - polyfill needed for html import
 - cant use bundlers with html method
 
+## Building a custom element
 
+- which attributes does it need?
+- how does it react to attribute changes?
+- what properties it has?
+- what events it fires and when?
+
+if you do like this
+
+```js
+this._root = this.attachShadow({ mode: 'open' });
+```
+
+then later you would use `this._root.<method | value>` in any place you would otherwise use `document.<method | value>`.
 
 - jsx/tsx in web components?
 - writing with typescript?
 - perf test of framework component vs. web component
 - how would these components work in an app of components?
 - how to style components in shadow dom?
+- light DOM vs shadow DOM
