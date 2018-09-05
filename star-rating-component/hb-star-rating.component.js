@@ -8,7 +8,7 @@ const styles = `
 		width: 180px;
 	}
 	.container {
-		color: #c5c5c5;
+		color: var(--star-default-color, #c5c5c5);
 		font-size: 1em;
 		line-height: 1em;
 		margin: 0 auto;
@@ -17,7 +17,7 @@ const styles = `
 		cursor: pointer;
 	}
 	.container .top {
-		color: #e7bd06;
+		color: var(--star-selected-color, #e7bd06);
 		padding: 0;
 		position: absolute;
 		z-index: 1;
@@ -41,7 +41,7 @@ const styles = `
 	}
 	.container .bottom > span:hover,
 	.container .bottom > span:hover ~ span {
-		 color: #e7bd06;
+		 color: var(--star-hover-color, var(--star-selected-color, #e7bd06));
 	}
 	:host([disabled]) .container {
 		cursor: inherit;
@@ -92,16 +92,6 @@ class HbStarRating extends HTMLElement {
 		return this._value;
 	}
 
-	attributeChangeHandlers = {
-		disabled: (oldValue, newValue) => this._disabled = !!newValue,
-		value: (oldValue, newValue) => {
-			if (!this._touched) {
-				this._value = newValue;
-				this._render();
-			}
-		}
-	};
-
 	connectedCallback() {
 		this._root.innerHTML = template;
 		this._disabled = !!this.getAttribute('disabled');
@@ -138,6 +128,18 @@ class HbStarRating extends HTMLElement {
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (oldValue !== newValue) {
 			this.attributeChangeHandlers[name](oldValue, newValue);
+		}
+	}
+
+	get attributeChangeHandlers() {
+		return {
+			disabled: (oldValue, newValue) => this._disabled = !!newValue,
+			value: (oldValue, newValue) => {
+				if (!this._touched) {
+					this._value = newValue;
+					this._render();
+				}
+			}
 		}
 	}
 }

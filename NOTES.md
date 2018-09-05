@@ -93,3 +93,9 @@ Writing component:
 - class on slot doesn't persist in DOM, but you can still use it in selectors
 - default vs named slots
 - default slot content
+
+- custom properties vs css variables: let's call them variables, because that's what they are hence `var()`
+https://caniuse.com/#search=css%20variables
+https://github.com/jhildenbiddle/css-vars-ponyfill
+
+- CSS variables can be defined in a selector targeting any parent of the component (most typically, the component host)

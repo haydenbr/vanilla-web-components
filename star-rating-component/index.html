@@ -5,17 +5,21 @@
 		<title></title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type="module" src="hb-star-rating.component.js"></script>
+		<script type="text/javascript" src="hb-star-rating.component.js"></script>
 		<style>
 			html, body {
 				font-size: 1.5em;
+			}
+
+			#sr {
+				--star-default-color: gray;
 			}
 		</style>
 	</head>
 	<body>
 		<p>
 			<span>Star rating:</span>
-			<hb-star-rating id="sr" value="3"></hb-star-rating>
+			<hb-star-rating id="sr"></hb-star-rating>
 		</p>
 	</body>
 </html>
