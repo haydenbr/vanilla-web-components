@@ -41,6 +41,7 @@ const style = `
 	padding-left: 1em;
 }
 .close {
+	align-items: center;
 	flex-basis: 100px;
 	flex-grow: 0;
 	flex-shrink: 0;
@@ -49,28 +50,56 @@ const style = `
 	justify-content: center;
 	user-select: none;
 }
+.menu-items::slotted(a) {
+	display: block;
+	font-size: 1.2em;
+	text-decoration: none;
+	line-height: 2.5em;
+	padding: 0.5em;
+	border-bottom: solid 1px #F1F1F1;
+	color: #665;
+}
+.menu-items::slotted(a:hover) {
+	color: #000;
+}
 :host([theme="orange"]) .title {
 	background-color: #f8981c;
 	color: #fff;
+}
+:host([theme="orange"]) .menu-items::slotted(a:hover) {
+	color: #f8981c;
 }
 :host([theme="purple"]) .title {
 	background-color: #6f7dbc;
 	color: #fff;
 }
+:host([theme="purple"]) .menu-items::slotted(a:hover) {
+	color: #6f7dbc;
+}
+:host([backdrop="false"]) .frame.open {
+	pointer-events: none;
+	background-color: inherit;
+}
+:host([backdrop="false"]) .frame.open .container {
+	pointer-events: auto;
+}
+.menu-items::slotted(a) {
+	color: #999;
+}
 `;
 
 const template = `
 <style>${style}</style>
-<div class="frame">
+<div class="frame" data-close="true">
 	<nav class="container">
 		<div class="title">
 			<div class="title-content">
-				Menu
+				<slot name="menu-title">Menu</slot>
 			</div>
-			<a class="close">&#10006;</a>
+			<a class="close" data-close="true">&#10006;</a>
 		</div>
 		<div class="content">
-			<a href="#">Menu Item One</a>
+			<slot class="menu-items"></slot>
 		</div>
 	</nav>
 </div>
@@ -80,9 +109,45 @@ class SlideOutMenuComponent extends HTMLElement {
 	constructor() {
 		super();
 		this._root = this.attachShadow({ mode: 'open' });
-		this._root.innerHTML = template;
 		this._$frame = null;
 		this._open = false;
+	}
+
+	connectedCallback() {
+		this._root.innerHTML = template;
+		this._$frame = this._root.querySelector('.frame');
+		this._$frame.addEventListener('click', (event) => this.onCloseClick(event));
+	}
+
+	set open(value) {
+		const result = !!value;
+		if (this._open === result) {
+			return;
+		}
+		this._open = result;
+		this._render();
+	}
+
+	get open() {
+		return this._open;
+	}
+
+	onCloseClick(event) {
+		if (event.target.dataset.close === 'true') {
+			this.open = false;
+		}
+	}
+
+	_render() {
+		if (this._$frame) {
+			if (this.open) {
+				this._$frame.classList.add('open');
+				this.dispatchEvent(new CustomEvent('menuopen'));
+			} else {
+				this._$frame.classList.remove('open');
+				this.dispatchEvent(new CustomEvent('menuclose'));
+			}
+		}
 	}
 }
 

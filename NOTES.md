@@ -86,3 +86,10 @@ then later you would use `this._root.<method | value>` in any place you would ot
 - how would these components work in an app of components?
 - how to style components in shadow dom?
 - light DOM vs shadow DOM
+- what's the difference between this and, say, bootstrap elements?
+
+Writing component:
+
+- class on slot doesn't persist in DOM, but you can still use it in selectors
+- default vs named slots
+- default slot content

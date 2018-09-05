@@ -8,11 +8,31 @@
 		<script type="module" src="slide-out-menu.component.js"></script>
 		<style>
 			html, body {
-				font-size: 1.5em;
+				font-family: Arial, Helvetica, sans-serif;
 			}
 		</style>
 	</head>
 	<body>
-		<slide-out-menu></slide-out-menu>
+		<slide-out-menu id="menu" theme="purple">
+			<div slot="menu-title">Menu</div>
+			<a href="#">One</a>
+			<a href="#">Two</a>
+			<a href="#">Three</a>
+		</slide-out-menu>
+		<div class="controls">
+			<button class="btn" data-action="open">Open Menu</button>
+			<button class="btn" data-action="close">Close Menu</button>
+		</div>
+		<script>
+			const $controls = document.querySelector('.controls');
+			const $menu = document.getElementById('menu');
+
+			$controls.addEventListener('click', (event) => {
+				$menu.open = event.target.dataset.action === 'open';
+			})
+
+			$menu.addEventListener('menuopen', (event) => console.log('menu opened', event));
+			$menu.addEventListener('menuclose', (event) => console.log('menu closed', event));
+		</script>
 	</body>
 </html>
