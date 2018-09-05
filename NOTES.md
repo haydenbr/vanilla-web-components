@@ -99,3 +99,8 @@ https://caniuse.com/#search=css%20variables
 https://github.com/jhildenbiddle/css-vars-ponyfill
 
 - CSS variables can be defined in a selector targeting any parent of the component (most typically, the component host)
+
+- native CSS mixins
+https://caniuse.com/#search=css%20%40apply
+
+

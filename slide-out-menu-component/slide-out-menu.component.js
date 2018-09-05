@@ -1,4 +1,11 @@
 const style = `
+:host {
+	--menu-primary-color: #f8981c;
+	--menu-text-color: #fff;
+	--menu-width: 80%;
+	--title-font-size: 1.5em;
+	--menu-item-font-size: 1.2em;
+}
 .frame {
 	position: fixed;
 	top: 0;
@@ -17,8 +24,7 @@ const style = `
 	transform: translate3d(0, 0, 0);
 }
 .container {
-	width: 80%;
-	max-width: 400px;
+	width: var(--menu-width);
 	background: #FFF;
 	height: 100%;
 	transform: translate3D(-100%, 0, 0);
@@ -30,9 +36,9 @@ const style = `
 	display: flex;
 	flex-direction: row;
 	min-height: 3.2em;
-	font-size: 1.5em;
-	background-color: #F1F1F1;
-	color: #665;
+	font-size: var(--title-font-size);
+	background-color: var(--menu-primary-color);
+	color: var(--menu-text-color);
 }
 .title .title-content {
 	flex-grow: 1;
@@ -52,7 +58,7 @@ const style = `
 }
 .menu-items::slotted(a) {
 	display: block;
-	font-size: 1.2em;
+	font-size: var(--menu-item-font-size);
 	text-decoration: none;
 	line-height: 2.5em;
 	padding: 0.5em;
@@ -60,21 +66,7 @@ const style = `
 	color: #665;
 }
 .menu-items::slotted(a:hover) {
-	color: #000;
-}
-:host([theme="orange"]) .title {
-	background-color: #f8981c;
-	color: #fff;
-}
-:host([theme="orange"]) .menu-items::slotted(a:hover) {
-	color: #f8981c;
-}
-:host([theme="purple"]) .title {
-	background-color: #6f7dbc;
-	color: #fff;
-}
-:host([theme="purple"]) .menu-items::slotted(a:hover) {
-	color: #6f7dbc;
+	color: var(--menu-primary-color);
 }
 :host([backdrop="false"]) .frame.open {
 	pointer-events: none;
@@ -83,11 +75,8 @@ const style = `
 :host([backdrop="false"]) .frame.open .container {
 	pointer-events: auto;
 }
-.menu-items::slotted(a) {
-	color: #999;
-}
 `;
-
+// #6f7dbc
 const template = `
 <style>${style}</style>
 <div class="frame" data-close="true">
