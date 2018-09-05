@@ -7,15 +7,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/custom-elements-es5-adapter.js"></script>
 		<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-loader.js"></script>
-		<script src="dist/custom-style-interface.min.js"></script>
-		<script src="dist/hb-star-rating.component.js"></script>
-		<style>
+		<script src="custom-style-interface.min.js"></script>
+		<script src="hb-star-rating.component.js"></script>
+		<style class="document-style">
 			html, body {
 				font-size: 1.5em;
 			}
 
 			#sr {
-				--star-default-color: gray;
+				--star-default-color: red;
 			}
 		</style>
 	</head>
@@ -24,5 +24,10 @@
 			<span>Star rating:</span>
 			<hb-star-rating id="sr"></hb-star-rating>
 		</p>
+		<script>
+			if (window.ShadyCSS && window.ShadyCSS.CustomStyleInterface) {
+				window.ShadyCSS.CustomStyleInterface.addCustomStyle(document.querySelector('style.document-style'));
+			}
+		</script>
 	</body>
 </html>

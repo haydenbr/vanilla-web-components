@@ -1,7 +1,7 @@
 const style = `
 :host {
 	--menu-primary-color: #f8981c;
-	--menu-text-color: #fff;
+	--menu-primary-contrast-color: #fff;
 	--menu-width: 80%;
 	--title-font-size: 1.5em;
 	--menu-item-font-size: 1.2em;
@@ -38,7 +38,7 @@ const style = `
 	min-height: 3.2em;
 	font-size: var(--title-font-size);
 	background-color: var(--menu-primary-color);
-	color: var(--menu-text-color);
+	color: var(--menu-primary-contrast-color);
 }
 .title .title-content {
 	flex-grow: 1;

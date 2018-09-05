@@ -102,5 +102,18 @@ https://github.com/jhildenbiddle/css-vars-ponyfill
 
 - native CSS mixins
 https://caniuse.com/#search=css%20%40apply
+polyfill: https://github.com/webcomponents/shadycss
 
+Support:
+https://caniuse.com/#search=custom%20elements%20v1
+https://caniuse.com/#search=css%20variables
+https://caniuse.com/#search=html%20templates
+https://caniuse.com/#search=shadow%20dom%20v1
 
+not supported:
+https://caniuse.com/#search=html%20import
+https://caniuse.com/#search=css%20%40apply
+
+polyfills:
+https://github.com/webcomponents/shadycss
+https://github.com/webcomponents/webcomponentsjs

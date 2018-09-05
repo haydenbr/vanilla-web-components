@@ -76,6 +76,14 @@ class HbStarRating extends HTMLElement {
 		this._disabled = false;
 		this._value = 0;
 		this._touched = false;
+
+		let $template = document.createElement('template');
+		$template.innerHTML = template;
+
+		if (window.ShadyCSS) {
+			window.ShadyCSS.prepareTemplate($template, 'hb-star-rating');
+			this._$template = document.importNode($template.content, true);
+		}
 	}
 
 	set value(value) {
@@ -93,7 +101,11 @@ class HbStarRating extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this._root.innerHTML = template;
+		if (window.ShadyCSS) {
+			ShadyCSS.styleElement(this);
+		}
+
+		this._root.appendChild(this._$template);
 		this._disabled = !!this.getAttribute('disabled');
 		this._$top = this._root.querySelector('.top');
 		this._$bottom = this._root.querySelector('.bottom');
